@@ -1,0 +1,6 @@
+@Obligatorio.WebAPI_HostAddress = http://localhost:5066
+
+GET {{Obligatorio.WebAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

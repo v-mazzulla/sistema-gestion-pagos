@@ -1,0 +1,76 @@
+﻿@model IEnumerable<Obligatorio.DTOs.DTOsPago.DTOPago>
+
+@{
+    ViewData["Title"] = "List";
+}
+<h1>Buscar pagos por mes</h1>
+
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div>
+                <Input type="month" name="mesFiltro" class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <button type="submit">Buscar</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+@if (Model is not null && Model.Count() > 0)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Metodo)
+                </th>
+                <th>
+                    Tipo de gasto
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Usuario)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Descripcion)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Monto)
+                </th>
+                <th>
+                    Saldo pendiente
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model) {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Metodo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TipoGasto)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Usuario)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Descripcion)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Monto)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SaldoPendiente)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+} else
+{
+    <p> @ViewBag.Mensaje </p>
+}
