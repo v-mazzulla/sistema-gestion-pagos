@@ -1,0 +1,41 @@
+﻿@model List<DTOEquipo>
+
+<h2>Buscar Equipos con Pago Único Mayor</h2>
+
+<!-- Formulario -->
+<form asp-action="BuscarEquiposPorMonto" method="post">
+    <div class="form-group">
+        <label for="monto">Ingrese el monto:</label>
+        <input type="number" id="monto" name="monto" class="form-control" required />
+    </div>
+    <button type="submit" class="btn btn-primary">Buscar</button>
+</form>
+
+<hr />
+
+<!-- Resultados -->
+@if (Model != null && Model.Any())
+{
+    <h3>Resultados</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var equipo in Model)
+            {
+                <tr>
+                    <td>@equipo.Id</td>
+                    <td>@equipo.Nombre</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>@ViewBag.Mensaje</p>
+}

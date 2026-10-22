@@ -1,0 +1,67 @@
+﻿@model IEnumerable<HTTPClienteObligatorio.Models.DTOPago>
+
+@{
+    ViewData["Title"] = "List";
+}
+
+@if (Model is not null && Model.Count() > 0)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Metodo)
+                </th>
+                <th>
+                    Tipo de gasto
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Usuario)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Descripcion)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Monto)
+                </th>
+                <th>
+                    Tipo de pago
+                </th>
+                <th>
+                    Saldo pendiente
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model) {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Metodo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TipoGasto)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Usuario)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Descripcion)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Monto)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TipoPago)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SaldoPendiente)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+} else
+{
+    <p> @ViewBag.Mensaje </p>
+}

@@ -1,0 +1,108 @@
+﻿@model HTTPClienteObligatorio.Models.AltaPagoVM
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>AltaPagoVM</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create" id="formAlta" novalidate>
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div>
+                <label>Tipo de gasto</label>
+                <select class="form-select" asp-for="Dto.IdTipoGasto">
+                    @foreach (var tg in Model.TiposDeGasto)
+                    {
+                        <option value="@tg.Id">@tg.Nombre</option>
+                    }
+                </select>
+                <span asp-validation-for="Dto.IdTipoGasto" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Dto.Descripcion" class="control-label"></label>
+                <input asp-for="Dto.Descripcion" class="form-control" />
+                <span asp-validation-for="Dto.Descripcion" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Dto.Monto" class="control-label"></label>
+                <input asp-for="Dto.Monto" type="number" class="form-control" />
+                <span asp-validation-for="Dto.Monto" class="text-danger"></span>
+            </div>
+
+            <div>
+                <label>Metodo de pago</label>
+                <select class="form-select" asp-for="Dto.IdMetodo">
+                    @foreach (var mp in Model.MetodosPago) {
+                        <option value="@mp.Id">@mp.Nombre</option>
+                    }
+                </select>
+                <span asp-validation-for="Dto.IdMetodo" class="text-danger"></span>
+            </div>
+
+            <div>
+                <label>Tipo de pago</label>
+                <select class="form-select" asp-for="Dto.TipoPago">
+                    <option value="unico">Unico</option>
+                    <option value="recurrente">Recurrente</option>
+                </select>
+                <span asp-validation-for="Dto.TipoPago" class="text-danger"></span>
+            </div>
+
+            <div id="recurrentediv">
+                <div>
+                    <label asp-for="Dto.FechaDesde" class="control-label"></label>
+                    <input type="date" asp-for="Dto.FechaDesde" />
+                    <span asp-validation-for="Dto.FechaDesde" class="text-danger"></span>
+                </div>
+
+                <div>
+                    <label asp-for="Dto.FechaHasta" class="control-label"></label>
+                    <input type="date" asp-for="Dto.FechaHasta" />
+                    <span asp-validation-for="Dto.FechaHasta" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div id="unicodiv">
+                <div>
+                    <label asp-for="Dto.Fecha" class="control-label"></label>
+                    <input type="date" asp-for="Dto.Fecha" />
+                    <span asp-validation-for="Dto.Fecha" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Dto.NroRecibo" class="control-label"></label>
+                    <input asp-for="Dto.NroRecibo" class="form-control" />
+                    <span asp-validation-for="Dto.NroRecibo" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Crear" class="btn btn-primary" />
+            </div>
+
+        </form>
+    </div>
+</div>
+
+@if (ViewBag.Mensaje != null)
+{
+    <p class="text-danger">@ViewBag.Mensaje</p>
+}
+
+@if (ViewBag.msgS != null)
+{
+    <p class="text-success">@ViewBag.msgS</p>
+}
+
+<div id="errorJS"></div>
+
+
+
+<script src="~/js/Pago/AltaPago.js"></script>
